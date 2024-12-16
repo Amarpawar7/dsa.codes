@@ -1,0 +1,42 @@
+def prtition(arr, low, high):
+    pivot= arr[high]
+    k= low-1
+    for i in range (low, high, 1):
+        if (arr[i]< pivot):
+            k+=1
+            temp= arr[k]
+            arr[k]= arr[i]
+            arr[i]= temp
+            
+    k+=1
+    temp1= arr[k]
+    arr[k]= arr[high] # this brings pivot to its correct place from the last place of the array.
+    arr[high]= temp1
+    return k; #returning the  index of pivot element to quickSort.
+
+
+def quickSort(arr, low, high):
+    if (low< high):
+        pivi= prtition(arr, low, high) #this will return the correct value of pivot element in every array.
+        
+        quickSort(arr, low, pivi-1)
+        quickSort(arr, pivi+1, high)
+    
+
+size= int(input("Enter size of the array: "))
+arr= []
+
+print("Enter the values in the array: ")
+for i in range (0,size,1):
+    val= int(input())
+    arr.append(val)
+    
+print("the unsorted array is: ", end=" ")
+for i in range (0, size, 1):
+    print(arr[i], end=" ")
+    
+quickSort(arr, 0, size-1)
+print(" ")
+print("the sorted array is: ", end=" ")
+for i in range (0, size, 1):
+    print(arr[i], end=" ")    

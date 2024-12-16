@@ -1,0 +1,81 @@
+"""Write a Python program to store marks scored in subject “Fundamental of Data
+Structure” by N students in the class. Write functions to compute following:
+a) The average score of class
+b) Highest score and lowest score of class
+c) Display the list of students who were absent for the test
+d) Display mark with highest frequency"""
+
+
+n = int(input("Enter the total number of students present in the class : "))
+S = []
+for i in range(n):
+    data=input("Name of the student ",str(i+1)," is : ")
+    S.append(data)
+print("Students in class:",S)
+
+score = []
+absent_student = []
+
+total = 0
+
+for i in S:
+    marks = eval(input("Marks scored by student  "+ i +  " in FDS test is : (put marks -1 for absent students) : "))#eval=int
+    if marks ==  -1:
+        absent_student.append(i)
+    else:
+        score.append(marks)
+        total+= marks
+
+def avg():
+    Average = total/(len(score))
+    print("Average of score of the class : ",Average)
+
+def maxi():
+    max = score[0]
+    for mark in score:
+        if max < mark:
+            max = mark
+    print("Highest score of class is : ", max )
+
+def mini():
+    min = score[0]
+    for mark in score:
+        if mark < min:
+            min = mark
+    print("Lowest score of class is : ", min )
+
+def freq():
+    
+    max = j = 0
+    print("\nMarks\t|\tFrequency")
+    for i in score:
+        if(score.index(i) == j):
+            print(i,"\t|\t",score.count(i))
+            if(max < score.count(i)):
+                max = score.count(i)
+                mark = i
+        j += 1
+    print("\nScore", mark ,"is with highest frequency", max )
+
+while(1):
+    print("\nEnter\n1.Average\n2.High score\n3.Lowest Score\n4.Higest Frequency\n5.No. of Absent Students\n6Name of the absent students\n")
+    o=input()
+    if o == '1' :
+        avg()
+    elif o == '2' :
+        maxi()
+    elif o == '3' :
+        mini()
+    elif o == '4' :
+        freq()
+    elif o == '5' :
+        print("No. of students absent for FDS test : ",len(absent_student))
+    elif o == '6' :
+        print("Name of students who were absent for the test are: ",absent_student)
+    else:
+        print("Invalid command !!!")
+        break
+
+
+
+ 
